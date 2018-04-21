@@ -20,15 +20,9 @@ export default class PhoneList extends Component {
       ]
     }
   }
-  delete() {
-    alert("Someone want to delete this phone number");
-  }
   render() {
     return (
       <div>
-        <p>{this.props.name}: {this.props.phone}</p>
-        <button type="button" onClick={this.delete}>Delete</button>
-        <hr/>
         {
           this.state.phoneList.map (function (item) {
             return (

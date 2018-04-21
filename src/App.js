@@ -16,7 +16,7 @@ class App extends Component {
           Hi! My name is Anastasia. Nice to meet you :)
         </p>
         <MyForm />
-        <PhoneList name="nastia" phone="+380111111111"/>
+        <PhoneList />
       </div>
     );
   }
