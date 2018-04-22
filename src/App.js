@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MyForm from './form'
-import PhoneList from './list'
+import SavedNumbers from './saved';
 
 class App extends Component {
   render() {
@@ -15,8 +14,7 @@ class App extends Component {
         <p className="App-intro">
           Hi! My name is Anastasia. Nice to meet you :)
         </p>
-        <MyForm />
-        <PhoneList />
+        <SavedNumbers />
       </div>
     );
   }

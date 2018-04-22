@@ -21,15 +21,12 @@ export default class PhoneList extends Component {
     }
   }
   render() {
+    let names = this.state.phoneList.concat(this.props.list).map(function (item) {
+      return <li>{item.name} : {item.phone}</li>;
+    });
     return (
       <div>
-        {
-          this.state.phoneList.map (function (item) {
-            return (
-              <p>{item.name} : {item.phone}</p>
-            );
-          })
-        }
+        <ol className="list">{names}</ol>
       </div>
     );
   }

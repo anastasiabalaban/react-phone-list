@@ -3,25 +3,16 @@ import React, { Component } from 'react';
 export default class MyForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      people: []
-    }
     this.nameInput = React.createRef();
     this.phoneInput = React.createRef();
-    this.save = this.save.bind(this)
+    this.addValues = this.addValues.bind(this)
   }
-  save() {
+  addValues() {
     let name = this.nameInput.current.value;
     let phone = this.phoneInput.current.value;
-    alert("Hello " + name + "!");
-    this.setState({
-      people: this.state.people.concat({name: name, phone: phone})
-    });
+    this.props.saving(name, phone);
   }
   render() {
-    let names = this.state.people.map(function (item) {
-      return <li>{item.name} : {item.phone}</li>;
-    });
     return (
       <div>
         <form>
@@ -33,9 +24,8 @@ export default class MyForm extends Component {
             Phone:
             <input type="text" ref={this.phoneInput} />
           </label>
-          <button type="button" className="button" onClick={this.save}>Add to phone list</button>
+          <button type="button" className="button" onClick={this.addValues}>Add to phone list</button>
         </form>
-        <ol className="list">{names}</ol>
       </div>
     );
   }
