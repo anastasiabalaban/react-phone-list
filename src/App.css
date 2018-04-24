@@ -59,3 +59,7 @@ input {
   border-radius: 5px;
   margin: 5px;
 }
+
+li {
+  padding: 10px;
+}

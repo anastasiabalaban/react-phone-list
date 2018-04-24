@@ -8,9 +8,9 @@ export default class SavedNumbers extends Component {
     this.state = {
       people: []
     }
-    this.save = this.save.bind(this)
+    this._save = this._save.bind(this)
   }
-  save(name, phone) {
+  _save(name, phone) {
     alert("Hello " + name + "!");
     this.setState({
       people: this.state.people.concat({name: name, phone: phone})
@@ -19,7 +19,7 @@ export default class SavedNumbers extends Component {
   render() {
     return (
       <div>
-        <Form saving={this.save}/>
+        <Form saving={this._save} />
         <PhoneList list={this.state.people} />
       </div>
     );

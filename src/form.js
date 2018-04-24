@@ -5,12 +5,18 @@ export default class MyForm extends Component {
     super(props);
     this.nameInput = React.createRef();
     this.phoneInput = React.createRef();
-    this.addValues = this.addValues.bind(this)
+    this._addValues = this._addValues.bind(this)
   }
-  addValues() {
+  _addValues() {
     let name = this.nameInput.current.value;
     let phone = this.phoneInput.current.value;
     this.props.saving(name, phone);
+  }
+  componentDidUpdate(){
+    this.phoneInput.current.value = '';
+    this.phoneInput.current.focus();
+    this.nameInput.current.value = '';
+    this.nameInput.current.focus();
   }
   render() {
     return (
@@ -18,13 +24,13 @@ export default class MyForm extends Component {
         <form>
           <label>
             Name:
-            <input type="text" ref={this.nameInput} />
+            <input autoFocus type="text" ref={this.nameInput} />
           </label>
           <label>
             Phone:
             <input type="text" ref={this.phoneInput} />
           </label>
-          <button type="button" className="button" onClick={this.addValues}>Add to phone list</button>
+          <button type="button" className="button" onClick={this._addValues}>Add to phone list</button>
         </form>
       </div>
     );
