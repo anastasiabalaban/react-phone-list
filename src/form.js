@@ -13,9 +13,8 @@ export default class MyForm extends Component {
     this.props.saving(name, phone);
   }
   componentDidUpdate(){
-    this.phoneInput.current.value = '';
-    this.phoneInput.current.focus();
     this.nameInput.current.value = '';
+    this.phoneInput.current.value = '';
     this.nameInput.current.focus();
   }
   render() {

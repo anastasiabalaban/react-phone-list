@@ -40,6 +40,7 @@
   border: 1px solid #a2dbe5;
   border-radius: 5px;
   padding: 5px 20px;
+  margin: 10px;
 }
 
 .button:hover {
@@ -62,4 +63,12 @@ input {
 
 li {
   padding: 10px;
+}
+
+.btn-close {
+  background-color: #f26a6a;
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #c63f3f;
+  float: right;
 }

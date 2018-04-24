@@ -17,17 +17,31 @@ export default class PhoneList extends Component {
           name: "Max",
           phone: "+380952229999"
         }
-      ]
+      ],
+      showContacts: true
     }
   }
   render() {
     let names = this.state.phoneList.concat(this.props.list).map(function (item) {
-      return <li>{item.name} : {item.phone}</li>;
+      return <li>{item.name} : {item.phone}<button type="button" class="btn-close">x</button></li>;
     });
+    let contactNodes;
+    let buttonText = "Show contacts";
+    if (this.state.showContacts) {
+      contactNodes = <ol className="list">{names}</ol>;
+      buttonText = "Hide contacts";
+    }
     return (
       <div>
-        <ol className="list">{names}</ol>
+        <button type="button" className="button" onClick={this._handleClick.bind(this)}>{buttonText}</button>
+        {contactNodes}
+        <p>There are {names.length} contacts in the list.</p>
       </div>
     );
+  }
+  _handleClick() {
+    this.setState ({
+      showContacts: !this.state.showContacts
+    });
   }
 }
