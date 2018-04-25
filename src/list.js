@@ -33,15 +33,22 @@ export default class PhoneList extends Component {
     }
     return (
       <div>
-        <button type="button" className="button" onClick={this._handleClick.bind(this)}>{buttonText}</button>
+        <button type="button" className="button" onClick={this.handleClick.bind(this)}>{buttonText}</button>
         {contactNodes}
         <p>There are {names.length} contacts in the list.</p>
       </div>
     );
   }
-  _handleClick() {
+  handleClick() {
     this.setState ({
       showContacts: !this.state.showContacts
     });
   }
+  // _deleteContact() {
+  //   prompt("Are you sure?");
+  //   const contacts = [...this.state.phoneList];
+  //   const contactIndex = contacts.indexOf(this);
+  //   contacts.splice(contactIndex, 1);
+  //   this.setState({ contacts });
+  // }
 }

@@ -66,9 +66,9 @@ li {
 }
 
 .btn-close {
-  background-color: #f26a6a;
-  color: #fff;
+  background-color: #fff;
+  color: #db2525;
   border-radius: 5px;
-  border: 1px solid #c63f3f;
+  border: 1px solid #db2525;
   float: right;
 }

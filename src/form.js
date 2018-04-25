@@ -3,33 +3,42 @@ import React, { Component } from 'react';
 export default class MyForm extends Component {
   constructor(props) {
     super(props);
-    this.nameInput = React.createRef();
-    this.phoneInput = React.createRef();
-    this._addValues = this._addValues.bind(this)
+    this.state = {
+      name: '',
+      phone: '',
+    };
+    this.addValues = this.addValues.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handlePhoneChange = this.handlePhoneChange.bind(this);
   }
-  _addValues() {
-    let name = this.nameInput.current.value;
-    let phone = this.phoneInput.current.value;
+  addValues() {
+    const name = this._name.value;
+    const phone = this._phone.value;
     this.props.saving(name, phone);
+    this.setState({ name: '', phone: '' });
+    this._name.focus();
   }
-  componentDidUpdate(){
-    this.nameInput.current.value = '';
-    this.phoneInput.current.value = '';
-    this.nameInput.current.focus();
+  handleNameChange(event) {
+    this.setState({ name: event.target.value });
+  }
+  handlePhoneChange(event) {
+    this.setState({ phone: event.target.value });
   }
   render() {
+    const {name, phone} = this.state;
+    const isEnabled = name.length > 0 && phone.length > 0;
     return (
       <div>
         <form>
           <label>
             Name:
-            <input autoFocus type="text" ref={this.nameInput} />
+            <input autoFocus type="text" ref={input => this._name = input} value={this.state.name} onChange={this.handleNameChange} />
           </label>
           <label>
             Phone:
-            <input type="text" ref={this.phoneInput} />
+            <input type="text" ref={input => this._phone = input} value={this.state.phone} onChange={this.handlePhoneChange} />
           </label>
-          <button type="button" className="button" onClick={this._addValues}>Add to phone list</button>
+          <button type="button" className="button" onClick={this.addValues} disabled={!isEnabled}>Add to phone list</button>
         </form>
       </div>
     );
