@@ -8,36 +8,24 @@ export default class MyForm extends Component {
       phone: '',
     };
     this.addValues = this.addValues.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handlePhoneChange = this.handlePhoneChange.bind(this);
   }
   addValues() {
-    const name = this.state.name;
-    const phone = this.state.phone;
-    this.props.saving(name, phone);
+    this.props.saving(this.state.name, this.state.phone);
     this.setState({ name: '', phone: '' });
   }
-  handleNameChange(event) {
-    this.setState({ name: event.target.value });
-  }
-  handlePhoneChange(event) {
-    this.setState({ phone: event.target.value });
-  }
   render() {
-    const {name, phone} = this.state;
-    const isEnabled = name.length > 0 && phone.length > 0;
     return (
       <div>
         <form>
           <label>
             Name:
-            <input autoFocus type="text" value={this.state.name} onChange={this.handleNameChange}/>
+            <input autoFocus type="text" value={this.state.name} onChange={event => this.setState({name: event.target.value})}/>
           </label>
           <label>
             Phone:
-            <input type="text" value={this.state.phone} onChange={this.handlePhoneChange} />
+            <input type="text" value={this.state.phone} onChange={event => this.setState({phone: event.target.value})}/>
           </label>
-          <button type="button" className="button" onClick={this.addValues} disabled={!isEnabled}>Add to phone list</button>
+          <button type="button" className="button" onClick={this.addValues} disabled={!this.state.name || !this.state.phone}>Add to phone list</button>
         </form>
       </div>
     );
