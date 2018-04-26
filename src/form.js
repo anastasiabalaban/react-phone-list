@@ -12,11 +12,10 @@ export default class MyForm extends Component {
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
   }
   addValues() {
-    const name = this._name.value;
-    const phone = this._phone.value;
+    const name = this.state.name;
+    const phone = this.state.phone;
     this.props.saving(name, phone);
     this.setState({ name: '', phone: '' });
-    this._name.focus();
   }
   handleNameChange(event) {
     this.setState({ name: event.target.value });
@@ -32,11 +31,11 @@ export default class MyForm extends Component {
         <form>
           <label>
             Name:
-            <input autoFocus type="text" ref={input => this._name = input} value={this.state.name} onChange={this.handleNameChange} />
+            <input autoFocus type="text" value={this.state.name} onChange={this.handleNameChange}/>
           </label>
           <label>
             Phone:
-            <input type="text" ref={input => this._phone = input} value={this.state.phone} onChange={this.handlePhoneChange} />
+            <input type="text" value={this.state.phone} onChange={this.handlePhoneChange} />
           </label>
           <button type="button" className="button" onClick={this.addValues} disabled={!isEnabled}>Add to phone list</button>
         </form>

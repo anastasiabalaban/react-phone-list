@@ -4,51 +4,31 @@ export default class PhoneList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phoneList: [
-        {
-          name: "Anastasia",
-          phone: "+380934878997"
-        },
-        {
-          name: "Vlad",
-          phone: "+380981112233"
-        },
-        {
-          name: "Max",
-          phone: "+380952229999"
-        }
-      ],
       showContacts: true
     }
-  }
-  render() {
-    let names = this.state.phoneList.concat(this.props.list).map(function (item) {
-      return <li>{item.name} : {item.phone}<button type="button" class="btn-close">x</button></li>;
-    });
-    let contactNodes;
-    let buttonText = "Show contacts";
-    if (this.state.showContacts) {
-      contactNodes = <ol className="list">{names}</ol>;
-      buttonText = "Hide contacts";
-    }
-    return (
-      <div>
-        <button type="button" className="button" onClick={this.handleClick.bind(this)}>{buttonText}</button>
-        {contactNodes}
-        <p>There are {names.length} contacts in the list.</p>
-      </div>
-    );
+    this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
     this.setState ({
       showContacts: !this.state.showContacts
     });
   }
-  // _deleteContact() {
-  //   prompt("Are you sure?");
-  //   const contacts = [...this.state.phoneList];
-  //   const contactIndex = contacts.indexOf(this);
-  //   contacts.splice(contactIndex, 1);
-  //   this.setState({ contacts });
-  // }
+  render() {
+    let contacts = this.props.list.map((item, index) => (
+      <li>{item.name} : {item.phone}<button type="button" class="btn-close" onClick={() => (this.props.delete(index))}>x</button></li>
+    ));
+    let contactNodes;
+    let buttonText = "Show contacts";
+    if (this.state.showContacts) {
+      contactNodes = <ol className="list">{contacts}</ol>;
+      buttonText = "Hide contacts";
+    }
+    return (
+      <div>
+        <button type="button" className="button" onClick={this.handleClick}>{buttonText}</button>
+        {contactNodes}
+        <p>There are {contacts.length} contacts in the list.</p>
+      </div>
+    );
+  }
 }
